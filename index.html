@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andreas Huber</title>
+<meta name="description" content="Open source Java projects by Andreas Huber — tools for Atlassian Confluence and docs-as-code workflows.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9881;</text></svg>">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-card: #fbfbfa;
+    --fg: #1a1a18;
+    --fg-muted: #5f5f5a;
+    --border: #e3e3df;
+    --accent: #1868c9;
+    --accent-soft: #eef4fd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a;
+      --bg-card: #1d1d22;
+      --fg: #ececea;
+      --fg-muted: #a0a09a;
+      --border: #2f2f36;
+      --accent: #74a8f0;
+      --accent-soft: #1f2733;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 1.5rem;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; }
+  header { padding: 4.5rem 0 2.5rem; }
+  h1 { margin: 0 0 .4rem; font-size: 2rem; letter-spacing: -.02em; }
+  .tagline { margin: 0; color: var(--fg-muted); font-size: 1.05rem; }
+  h2 {
+    margin: 3rem 0 1.25rem;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--fg-muted);
+    font-weight: 600;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card h3 { margin: 0 0 .5rem; font-size: 1.2rem; }
+  .card h3 a { color: var(--fg); text-decoration: none; }
+  .card h3 a:hover { color: var(--accent); }
+  .card p { margin: 0 0 1rem; color: var(--fg-muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1.15rem; padding: 0; list-style: none; }
+  .tags li {
+    font-size: .74rem;
+    padding: .16rem .55rem;
+    border-radius: 99px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+  .links a { color: var(--accent); text-decoration: none; font-size: .92rem; font-weight: 500; }
+  .links a:hover { text-decoration: underline; }
+  footer {
+    margin: 4rem 0 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: .85rem;
+  }
+  footer p { margin: .3rem 0; }
+  footer a { color: var(--fg-muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Andreas Huber</h1>
+    <p class="tagline">Java developer. Open source tools for documentation that has to live in two places at once.</p>
+  </header>
+
+  <main>
+    <h2>Projects</h2>
+
+    <!-- Add further projects by copying one .card block. -->
+    <article class="card">
+      <h3><a href="https://github.com/huber-and/atlassian-tools">Atlassian Tools</a></h3>
+      <p>Publishes Antora-generated documentation to Confluence Cloud. Maps several local
+         documentation trees to several spaces in one build, rewrites internal links so they
+         resolve across spaces, uploads images as attachments, and keeps the space in sync by
+         trashing pages that no longer exist locally. Writes nothing when the content has not
+         changed, so page histories stay readable.</p>
+      <ul class="tags">
+        <li>Java 21</li>
+        <li>Maven Plugin</li>
+        <li>Antora</li>
+        <li>AsciiDoc</li>
+        <li>Confluence Cloud</li>
+        <li>arc42</li>
+      </ul>
+      <div class="links">
+        <a href="https://huber-and.github.io/atlassian-tools/">Documentation</a>
+        <a href="https://github.com/huber-and/atlassian-tools">Source on GitHub</a>
+        <a href="https://mvnrepository.com/artifact/io.github.huber-and.atlassian">Maven Central</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025-2026 Andreas Huber &middot;
+       <a href="https://github.com/huber-and">github.com/huber-and</a></p>
+    <p>Project source code is licensed under the
+       <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
+  </footer>
+
+</div>
+</body>
+</html>
