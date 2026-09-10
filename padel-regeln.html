@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Padel-Regeln in Deutschland</title>
+<meta name="description" content="Aufschlag, Ballwechsel und Punktezählung nach dem FIP-Regelwerk, mit Platzdiagramm zu den Spielerpositionen beim Aufschlag.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127934;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg:        #EEF2F1;
+    --surface:   #FFFFFF;
+    --surface-2: #E3EBE9;
+    --ink:       #0F262B;
+    --muted:     #536E6E;
+    --line:      #CCD9D7;
+    --line-soft: #DEE7E5;
+    --accent:    #0E6E72;
+    --accent-2:  #0A4F52;
+    --accent-soft:#D9EAE8;
+    --court:     #2F7C86;
+    --court-box: #4F98A0;
+    --ball:      #BBD137;
+    --warn:      #A8442C;
+    --warn-soft: #F0DED8;
+
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+    --wrap: 47rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #0B1618;
+      --surface:   #112124;
+      --surface-2: #172C2F;
+      --ink:       #E4EDEA;
+      --muted:     #90A9A7;
+      --line:      #24393C;
+      --line-soft: #1B2E31;
+      --accent:    #5CC5C0;
+      --accent-2:  #8FD9D3;
+      --accent-soft:#123539;
+      --court:     #1C555E;
+      --court-box: #2C7079;
+      --ball:      #C6DE45;
+      --warn:      #E58B72;
+      --warn-soft: #38211B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg:        #0B1618;
+    --surface:   #112124;
+    --surface-2: #172C2F;
+    --ink:       #E4EDEA;
+    --muted:     #90A9A7;
+    --line:      #24393C;
+    --line-soft: #1B2E31;
+    --accent:    #5CC5C0;
+    --accent-2:  #8FD9D3;
+    --accent-soft:#123539;
+    --court:     #1C555E;
+    --court-box: #2C7079;
+    --ball:      #C6DE45;
+    --warn:      #E58B72;
+    --warn-soft: #38211B;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 20px;
+  }
+
+  .wrap {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding-block: 56px 72px;
+  }
+
+  /* ---------- type ---------- */
+
+  h1, h2, h3, .eyebrow, .num, .lede { font-family: var(--f-display); }
+
+  h1 {
+    font-size: clamp(2.1rem, 6.4vw, 3.1rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 3.6vw, 1.75rem);
+    line-height: 1.14;
+    letter-spacing: -0.018em;
+    font-weight: 700;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    line-height: 1.25;
+    letter-spacing: -0.006em;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  p { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  .lede {
+    font-family: var(--f-body);
+    font-size: 1.19rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 22px;
+  }
+
+  .meta {
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+
+  .ref {
+    font-family: var(--f-mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---------- chapters ---------- */
+
+  header.page { margin-bottom: 46px; }
+
+  .chapter { margin-top: 58px; }
+
+  .chapter-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    border-top: 2px solid var(--ink);
+    padding-top: 12px;
+    margin-bottom: 26px;
+  }
+
+  .num {
+    font-family: var(--f-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    padding-top: 4px;
+    flex: none;
+  }
+
+  .chapter-head .sub {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-left: auto;
+    flex: none;
+    padding-top: 6px;
+  }
+
+  .block { margin-bottom: 30px; }
+  .block:last-child { margin-bottom: 0; }
+
+  .block-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .block-title h3 { margin: 0; }
+
+  /* ---------- rule lists ---------- */
+
+  ul.rules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  ul.rules > li {
+    position: relative;
+    padding-left: 22px;
+  }
+
+  ul.rules > li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.66em;
+    width: 7px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  ul.rules.warn > li::before { background: var(--warn); }
+
+  strong { font-weight: 600; }
+
+  .term { font-variant-caps: all-small-caps; letter-spacing: 0.04em; font-weight: 600; }
+
+  /* ---------- court diagram ---------- */
+
+  figure.court {
+    margin: 0 0 26px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 20px 18px 16px;
+  }
+
+  figure.court .svg-hold { overflow-x: auto; }
+  figure.court svg { display: block; width: 100%; min-width: 340px; height: auto; }
+
+  figcaption {
+    font-family: var(--f-mono);
+    font-size: 0.75rem;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .d-court   { fill: var(--court); }
+  .d-box     { fill: var(--court-box); }
+  .d-line    { stroke: #F4FAF9; stroke-width: 3; fill: none; opacity: 0.9; }
+  .d-net     { stroke: #F4FAF9; stroke-width: 7; }
+  .d-net-tick{ stroke: var(--court); stroke-width: 2; }
+  .d-post    { fill: var(--muted); }
+  .d-imag    { stroke: #F4FAF9; stroke-width: 2.5; stroke-dasharray: 9 9; opacity: 0.75; fill: none; }
+  .d-zone    { fill: var(--ball); opacity: 0.28; }
+  .d-target  { fill: var(--ball); opacity: 0.18; }
+  .d-path    { stroke: var(--ball); stroke-width: 3.5; stroke-dasharray: 12 10; fill: none; }
+  .d-free    { stroke: #F4FAF9; stroke-width: 1.5; stroke-dasharray: 5 6; fill: none; opacity: 0.6; }
+  .d-lbl     { font-family: var(--f-mono); font-size: 20px; fill: var(--muted); }
+  .d-lbl-in  { font-family: var(--f-mono); font-size: 19px; fill: #F4FAF9; }
+  .d-note-in { font-family: var(--f-mono); font-size: 17px; fill: #F4FAF9; opacity: 0.85; }
+  .d-dim     { font-family: var(--f-mono); font-size: 18px; fill: var(--muted); }
+  .d-dimline { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+  .d-player  { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
+  .d-player-s{ fill: var(--ball); stroke: var(--accent-2); stroke-width: 3; }
+  .d-ptxt    { font-family: var(--f-mono); font-size: 21px; font-weight: 600; fill: var(--ink); }
+
+  /* ---------- position cards ---------- */
+
+  .positions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .positions > div {
+    background: var(--surface);
+    padding: 16px 17px 17px;
+  }
+
+  .positions .tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 9px;
+  }
+
+  .positions .chip {
+    display: inline-grid;
+    place-items: center;
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--surface-2);
+    letter-spacing: 0;
+  }
+  .positions .chip.serve { background: var(--ball); border-color: var(--accent-2); color: #17301B; }
+
+  .positions p { font-size: 0.98rem; line-height: 1.5; margin: 0; }
+  .positions .fixed-rule {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px dashed var(--line);
+    font-family: var(--f-mono);
+    font-size: 0.73rem;
+    line-height: 1.5;
+    color: var(--accent);
+  }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 15px 18px;
+    margin: 22px 0;
+  }
+  .callout.caution { border-left-color: var(--warn); background: var(--warn-soft); }
+  .callout p { font-size: 1rem; margin: 0; }
+  .callout .k {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  /* ---------- wall panels ---------- */
+
+  .walls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 14px;
+    margin: 4px 0 0;
+  }
+
+  .walls figure {
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 13px 14px 14px;
+  }
+  .walls svg { display: block; width: 100%; height: auto; }
+  .walls .verdict {
+    font-family: var(--f-mono);
+    font-size: 0.73rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 11px;
+  }
+  .walls .ok  { color: var(--accent); }
+  .walls .no  { color: var(--warn); }
+  .walls p { font-size: 0.94rem; line-height: 1.45; margin: 5px 0 0; color: var(--muted); }
+
+  .w-floor { stroke: var(--muted); stroke-width: 3; fill: none; }
+  .w-glass { fill: var(--court-box); opacity: 0.34; stroke: var(--court); stroke-width: 2; }
+  .w-mesh  { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 4 4; }
+  .w-net   { stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: 3 3; fill: none; }
+  .w-path  { stroke: var(--accent); stroke-width: 3; fill: none; }
+  .w-path-no { stroke: var(--warn); stroke-width: 3; fill: none; }
+  .w-lbl   { font-family: var(--f-mono); font-size: 13px; fill: var(--muted); }
+
+  /* ---------- score table ---------- */
+
+  .table-hold { overflow-x: auto; }
+
+  table.score {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--f-mono);
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  table.score th,
+  table.score td {
+    text-align: left;
+    padding: 9px 12px 9px 0;
+    border-bottom: 1px solid var(--line-soft);
+    white-space: nowrap;
+  }
+
+  table.score thead th {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+
+  table.score td.call { color: var(--accent); font-weight: 600; }
+  table.score tbody tr:last-child td { border-bottom: none; }
+  table.score td.note { white-space: normal; font-family: var(--f-body); font-size: 0.95rem; color: var(--muted); }
+
+  /* ---------- variants ---------- */
+
+  .variants {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .variants > div {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 4px 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .variants dt, .variants .name {
+    font-family: var(--f-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding-top: 2px;
+  }
+  .variants .desc { font-size: 0.99rem; line-height: 1.5; }
+  @media (max-width: 30rem) {
+    .variants > div { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- checklist ---------- */
+
+  .check {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 20px 20px 22px;
+    margin-top: 20px;
+  }
+  .check h3 { margin-bottom: 12px; }
+  .check ol {
+    margin: 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.99rem;
+  }
+  .check ol::marker { font-family: var(--f-mono); }
+
+  /* ---------- sources ---------- */
+
+  .sources {
+    margin-top: 56px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .sources h3 {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .sources ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <p class="eyebrow">Regelübersicht · Stand September 2026</p>
+    <h1>Padel-Regeln in Deutschland</h1>
+    <p class="lede">Aufschlag, Ballwechsel und Punktezählung – kompakt zusammengefasst, mit den Positionsregeln für alle vier Spieler beim Aufschlag.</p>
+    <p class="meta">
+      Grundlage: <strong>Rules of Padel</strong> der Fédération Internationale de Padel (FIP), Fassung gültig ab 01.01.2026.<br>
+      In Deutschland gilt dieses Regelwerk über den Deutschen Padel Verband (DPV) als FIP-Mitgliedsverband; Zählweise und Sonderregeln legen Turnier- bzw. Ligaausschreibungen fest.
+    </p>
+  </header>
+
+  <!-- ============ 1 AUFSCHLAG ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="num">01</span>
+      <h2>Aufschlag</h2>
+      <span class="sub">FIP Art. 4–9</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Ablauf</h3></div>
+      <ul class="rules">
+        <li>Aufgeschlagen wird von <strong>unten</strong>: Der Aufschläger lässt den Ball hinter der Aufschlaglinie <strong>einmal auf den Boden auftippen</strong> und schlägt ihn nach dem Aufsprung. Kein Hochwurf, kein Schlag direkt aus der Luft.</li>
+        <li>Der Treffpunkt liegt <strong>auf oder unter Hüfthöhe</strong>, und mindestens ein Fuß muss beim Schlag Bodenkontakt haben.</li>
+        <li>Der Ball muss <strong>diagonal</strong> gespielt werden und im gegenüberliegenden Aufschlagfeld (zwischen Netz und Aufschlaglinie) <strong>zuerst den Boden</strong> berühren.</li>
+        <li>Springt der Ball korrekt im Feld auf und berührt danach die <strong>Glaswand</strong>, ist der Aufschlag gültig und der Ballwechsel läuft. Berührt er nach dem Aufsprung das <strong>Metallgitter</strong>, ist es ein Fehler.</li>
+        <li>Es gibt <strong>zwei Versuche</strong>. Erster Fehler → zweiter Aufschlag; zweiter Fehler → Doppelfehler und Punkt für das Rückschlagpaar.</li>
+        <li><span class="term">Let</span>: Berührt der Ball Netz, Netzpfosten oder Netzband und landet danach korrekt im Aufschlagfeld, wird der Aufschlag wiederholt.</li>
+        <li>Der Rückschläger muss den Aufschlag <strong>aufspringen lassen</strong> – ein Volley-Return ist nicht erlaubt. Er darf den Ball nach dem Aufsprung auch erst nach dem Rebound von der eigenen Rück- oder Seitenwand spielen.</li>
+      </ul>
+
+      <div class="walls">
+        <figure>
+          <svg viewBox="0 0 260 120" role="img" aria-label="Aufschlag springt im Zielfeld auf und geht dann an die Glaswand">
+            <path class="w-floor" d="M8 100 H252"/>
+            <path class="w-net" d="M130 100 V64"/>
+            <rect class="w-glass" x="240" y="34" width="12" height="66"/>
+            <path class="w-path" d="M40 62 Q120 22 186 100 Q216 68 240 74"/>
+            <circle cx="186" cy="100" r="4.5" fill="var(--accent)"/>
+            <text class="w-lbl" x="228" y="26" text-anchor="middle">Glas</text>
+          </svg>
+          <p class="verdict ok">Aufschlag gültig</p>
+          <p>Ball springt zuerst im Zielfeld auf – der Kontakt mit der Glaswand danach ist erlaubt, Ballwechsel läuft.</p>
+        </figure>
+
+        <figure>
+          <svg viewBox="0 0 260 120" role="img" aria-label="Aufschlag springt auf und berührt danach das Gitter">
+            <path class="w-floor" d="M8 100 H252"/>
+            <path class="w-net" d="M130 100 V64"/>
+            <path class="w-mesh" d="M240 34 H252 V100 H240 Z"/>
+            <path class="w-path-no" d="M40 74 Q110 44 176 100 Q212 78 240 82"/>
+            <circle cx="240" cy="82" r="4.5" fill="var(--warn)"/>
+            <text class="w-lbl" x="228" y="26" text-anchor="middle">Gitter</text>
+          </svg>
+          <p class="verdict no">Fehler → 2. Aufschlag</p>
+          <p>Springt der Ball korrekt auf, berührt danach aber das Metallgitter statt der Glaswand, zählt das als Fehler – wie jeder andere Aufschlagfehler auch (zu lang, falsches Feld, Netzpfosten getroffen …).</p>
+        </figure>
+      </div>
+
+      <div class="callout">
+        <p><span class="k">Wichtig</span>Die zwei Versuche gelten für <strong>jede Fehlerart gleich</strong> – Gitter, falsches Feld, zu weit geschlagen, Mittellinie verfehlt: erster Fehler kostet nur den ersten Aufschlag, zweiter Fehler den Punkt. Einzige Ausnahme ist der <span class="term">Let</span> (Netzberührung, Ball landet trotzdem korrekt): der zählt nicht als Fehler und wird ohne Anrechnung wiederholt.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Positionen der vier Spieler</h3><span class="ref">Art. 3, 6, 8</span></div>
+      <p>Nur der Aufschläger hat eine vorgeschriebene Position. Die anderen drei Spieler dürfen <strong>überall auf ihrer eigenen Spielfeldhälfte</strong> stehen – die üblichen Positionen sind taktisch, nicht vorgeschrieben.</p>
+
+      <figure class="court">
+        <div class="svg-hold">
+          <svg viewBox="-80 -74 1160 730" role="img" aria-labelledby="courtTitle courtDesc">
+            <title id="courtTitle">Padelplatz von oben mit den Positionen beim Aufschlag</title>
+            <desc id="courtDesc">Der Aufschläger steht rechts hinten in seinem Aufschlagkorridor hinter der Aufschlaglinie und spielt diagonal in das gegenüberliegende Aufschlagfeld. Die drei übrigen Spieler dürfen frei auf ihrer eigenen Hälfte stehen.</desc>
+
+            <!-- court surface -->
+            <rect class="d-court" x="0" y="0" width="1000" height="500"/>
+
+            <!-- highlighted serve corridor (server's legal area, 3.05 m deep) -->
+            <rect class="d-zone" x="847.5" y="0" width="152.5" height="250"/>
+            <!-- target service box (6.95 x 5 m) -->
+            <rect class="d-target" x="152.5" y="250" width="347.5" height="250"/>
+
+            <!-- service boxes tint -->
+            <rect class="d-box" x="152.5" y="0" width="347.5" height="500" opacity="0.2"/>
+            <rect class="d-box" x="500" y="0" width="347.5" height="500" opacity="0.2"/>
+
+            <!-- outer lines -->
+            <rect class="d-line" x="0" y="0" width="1000" height="500"/>
+            <!-- service lines: 6.95 m from the net -->
+            <path class="d-line" d="M152.5 0 V500 M847.5 0 V500"/>
+            <!-- centre service lines (net -> service line, 20cm beyond) -->
+            <path class="d-line" d="M142.5 250 H500 M500 250 H857.5"/>
+            <!-- imaginary prolongation of the centre line -->
+            <path class="d-imag" d="M857.5 250 H1000 M142.5 250 H0"/>
+            <!-- net -->
+            <path class="d-net" d="M500 0 V500"/>
+            <path class="d-net-tick" d="M497 0 V500"/>
+            <rect class="d-post" x="494" y="-16" width="12" height="16"/>
+            <rect class="d-post" x="494" y="500" width="12" height="16"/>
+
+            <!-- serve trajectory -->
+            <path class="d-path" d="M922 122 Q700 176 330 356"/>
+            <circle cx="330" cy="356" r="11" fill="var(--ball)" stroke="var(--accent-2)" stroke-width="2.5"/>
+
+            <!-- players: serving pair (right half) -->
+            <circle class="d-player-s" cx="922" cy="122" r="22"/>
+            <text class="d-ptxt" x="922" y="130" text-anchor="middle" fill="#17301B">A</text>
+            <circle class="d-player" cx="610" cy="368" r="22"/>
+            <text class="d-ptxt" x="610" y="376" text-anchor="middle">P</text>
+            <text class="d-note-in" x="610" y="412" text-anchor="middle">frei</text>
+
+            <!-- players: receiving pair (left half) -->
+            <circle class="d-player" cx="86" cy="370" r="22"/>
+            <text class="d-ptxt" x="86" y="378" text-anchor="middle">R</text>
+            <text class="d-note-in" x="86" y="414" text-anchor="middle">frei</text>
+            <circle class="d-player" cx="402" cy="124" r="22"/>
+            <text class="d-ptxt" x="402" y="132" text-anchor="middle">M</text>
+            <text class="d-note-in" x="402" y="168" text-anchor="middle">frei</text>
+
+            <!-- in-court labels -->
+            <text class="d-lbl-in" x="924" y="34" text-anchor="middle">Aufschlag-</text>
+            <text class="d-lbl-in" x="924" y="56" text-anchor="middle">korridor</text>
+            <text class="d-lbl-in" x="326" y="296" text-anchor="middle">Zielfeld 6,95 × 5 m</text>
+
+            <!-- outside labels -->
+            <text class="d-lbl" x="500" y="-38" text-anchor="middle">Netz 0,88 m</text>
+            <text class="d-lbl" x="1044" y="256" text-anchor="middle" transform="rotate(90 1044 256)">Glas-Rückwand</text>
+            <text class="d-lbl" x="-44" y="256" text-anchor="middle" transform="rotate(-90 -44 256)">Glas-Rückwand</text>
+
+            <!-- dimensions -->
+            <path class="d-dimline" d="M500 540 H847.5 M500 532 V548 M847.5 532 V548"/>
+            <text class="d-dim" x="673" y="572" text-anchor="middle">6,95 m (Aufschlagfeld)</text>
+            <path class="d-dimline" d="M847.5 540 H1000 M1000 532 V548"/>
+            <text class="d-dim" x="924" y="572" text-anchor="middle">3,05 m</text>
+            <path class="d-dimline" d="M0 600 H1000 M0 592 V608 M1000 592 V608"/>
+            <text class="d-dim" x="500" y="632" text-anchor="middle">20 m Gesamtlänge · 10 m Breite</text>
+          </svg>
+        </div>
+        <figcaption>
+          <strong>A</strong> Aufschläger · <strong>P</strong> Partner des Aufschlägers · <strong>R</strong> Rückschläger · <strong>M</strong> Partner des Rückschlägers; „frei“ = keine Positionsvorgabe auf der eigenen Hälfte.
+          Gestrichelte Linie = gedachte Verlängerung der Mittellinie, die den Aufschlagkorridor seitlich begrenzt.
+          Die Aufschlaglinie liegt <strong>6,95 m vom Netz</strong> entfernt: das Aufschlagfeld ist 6,95 × 5 m groß, für den Aufschläger bleibt dahinter ein nur 3,05 m tiefer Streifen vor der Rückwand.
+        </figcaption>
+      </figure>
+
+      <div class="positions">
+        <div>
+          <p class="tag"><span class="chip serve">A</span> Aufschläger</p>
+          <p>Steht <strong>hinter der Aufschlaglinie</strong> – das ist ein nur 3,05 m tiefer Streifen vor der Rückwand –, seitlich begrenzt durch die gedachte Verlängerung der Mittellinie und die Seitenwand. Aufschlaglinie und gedachte Mittellinie dürfen beim Schlag <strong>nicht berührt oder übertreten</strong> werden; mindestens ein Fuß bleibt am Boden.</p>
+          <p class="fixed-rule">Einzige vorgeschriebene Position auf dem Platz.</p>
+        </div>
+        <div>
+          <p class="tag"><span class="chip">P</span> Partner des Aufschlägers</p>
+          <p>Keine Vorgabe – er darf <strong>irgendwo auf der eigenen Hälfte</strong> stehen, üblicherweise am Netz in der anderen Platzhälfte. Trifft der Aufschlag ihn oder etwas, das er trägt, ist es ein <strong>Aufschlagfehler</strong>.</p>
+          <p class="fixed-rule">Frei · darf den Aufschlag nicht berühren</p>
+        </div>
+        <div>
+          <p class="tag"><span class="chip">R</span> Rückschläger</p>
+          <p>Steht diagonal gegenüber, darf sich aber <strong>frei auf seiner Hälfte</strong> positionieren – auch weit vorne im Aufschlagfeld. Er muss den Ball lediglich aufspringen lassen, bevor er ihn spielt. Übliche Position ist wegen der Feldtiefe kurz vor der Rückwand.</p>
+          <p class="fixed-rule">Frei · Seitenzuordnung gilt für den ganzen Satz</p>
+        </div>
+        <div>
+          <p class="tag"><span class="chip">M</span> Partner des Rückschlägers</p>
+          <p>Ebenfalls <strong>frei auf der eigenen Hälfte</strong>, in der Regel am Netz. Wichtig: Trifft der Aufschlagball einen der beiden Rückschläger oder dessen Schläger, <strong>bevor</strong> er aufgesprungen ist, geht der Punkt an das Aufschlagpaar – auch wenn der Ball sonst ins Aus gegangen wäre.</p>
+          <p class="fixed-rule">Frei · nie in der Flugbahn des Aufschlags stehen</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><span class="k">Merksatz</span>Fixiert ist nur der Aufschlagkorridor. Alle drei anderen Spieler stehen dort, wo sie wollen – aber immer auf der eigenen Seite: Über oder unter dem Netz in die gegnerische Hälfte zu greifen oder das Netz zu berühren, kostet den Punkt.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Reihenfolge und Seitenwechsel</h3><span class="ref">Art. 4, 8, 10</span></div>
+      <ul class="rules">
+        <li>Aufschlag, Rückschlag und Seitenwahl werden zu Beginn <strong>ausgelost</strong>; das Gewinnerpaar wählt Aufschlag/Rückschlag oder Seite.</li>
+        <li>Das <strong>Aufschlagrecht wechselt nach jedem Spiel</strong> zum anderen Paar. Innerhalb eines Paares schlagen die beiden Spieler abwechselnd auf, jeder also in jedem zweiten eigenen Aufschlagspiel. Zu Beginn eines neuen Satzes darf die Reihenfolge im Paar neu festgelegt werden.</li>
+        <li>Das rückschlagende Paar legt im ersten Spiel eines Satzes fest, wer die <strong>rechte</strong> und wer die <strong>linke</strong> Seite annimmt. Diese Aufteilung bleibt <strong>für den gesamten Satz</strong> bestehen; innerhalb des Spiels nehmen die beiden abwechselnd an.</li>
+        <li>Aufgeschlagen wird pro Spiel abwechselnd von rechts und links, beginnend rechts.</li>
+        <li><strong>Seitenwechsel</strong> heißt: beide Paare tauschen die Platzhälften – und zwar nur <strong>in der Pause zwischen zwei Spielen</strong>, niemals während eines laufenden Spiels. Gewechselt wird immer dann, wenn die Summe der im Satz gespielten Spiele ungerade ist, also nach dem 1., 3., 5., 7. … Spiel; die Spielstände 1:0, 2:1, 3:2 usw. Bei gerader Summe (2:0, 2:2, 3:3) wird durchgespielt. Im Tiebreak wird nach jeweils sechs Punkten gewechselt.</li>
+        <li>Nicht zu verwechseln: Die Aufteilung <strong>rechts/links innerhalb eines Paares</strong> wechselt während eines Spiels ständig, weil abwechselnd von rechts und links auf- und angenommen wird. Die Spieler bleiben dabei aber auf ihrer eigenen Platzhälfte.</li>
+        <li>Schlägt der falsche Spieler auf, übernimmt der eigentlich berechtigte Spieler, sobald der Fehler entdeckt wird; bereits gespielte Punkte bleiben gültig.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 2 BALLWECHSEL ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="num">02</span>
+      <h2>Ballwechsel</h2>
+      <span class="sub">FIP Art. 11–16</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Die Grundregel: zuerst der Boden</h3></div>
+      <p>Der Ball muss über das Netz in die gegnerische Hälfte fliegen und dort <strong>zuerst den Boden</strong> berühren. Alles danach – Glas, Gitter, mehrfache Wandkontakte – ist erlaubt, solange der Ball vor dem <strong>zweiten Bodenkontakt</strong> zurückgespielt wird. Auf der eigenen Seite gilt das Umgekehrte: Eigene Wände sind Spielmittel und dürfen zum Annehmen genutzt werden.</p>
+
+      <div class="walls">
+        <figure>
+          <svg viewBox="0 0 260 120" role="img" aria-label="Ball springt im Feld auf und geht dann an die Glaswand">
+            <path class="w-floor" d="M8 100 H252"/>
+            <path class="w-net" d="M130 100 V64"/>
+            <rect class="w-glass" x="240" y="34" width="12" height="66"/>
+            <path class="w-path" d="M40 62 Q120 22 186 100 Q216 68 240 74"/>
+            <circle cx="186" cy="100" r="4.5" fill="var(--accent)"/>
+            <text class="w-lbl" x="228" y="26" text-anchor="middle">Glas</text>
+          </svg>
+          <p class="verdict ok">Weiter im Spiel</p>
+          <p>Boden, dann Wand – der Gegner darf den Rebound nehmen.</p>
+        </figure>
+
+        <figure>
+          <svg viewBox="0 0 260 120" role="img" aria-label="Ball fliegt direkt gegen die gegnerische Wand">
+            <path class="w-floor" d="M8 100 H252"/>
+            <path class="w-net" d="M130 100 V64"/>
+            <rect class="w-glass" x="240" y="34" width="12" height="66"/>
+            <path class="w-path-no" d="M40 62 Q140 24 240 60"/>
+            <circle cx="240" cy="60" r="4.5" fill="var(--warn)"/>
+            <text class="w-lbl" x="228" y="26" text-anchor="middle">Glas</text>
+          </svg>
+          <p class="verdict no">Fehler</p>
+          <p>Direkt an die gegnerische Wand oder ins Gitter – Punktverlust.</p>
+        </figure>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Erlaubt</h3></div>
+      <ul class="rules">
+        <li>Volleys – mit Ausnahme des Rückschlags auf den Aufschlag.</li>
+        <li>Den Ball nach dem Bodenkontakt von der <strong>eigenen</strong> Glas- oder Gitterwand zurückspringen lassen und dann spielen; auch mehrere eigene Wandkontakte sind erlaubt.</li>
+        <li>Durchschwingen über das Netz, solange der Ball auf der eigenen Seite getroffen wurde und niemand Netz, Pfosten oder Netzband berührt.</li>
+        <li>Ein Smash, der nach dem Aufsprung im Gegnerfeld <strong>über die Umzäunung hinaus</strong> fliegt, ist ein Punktgewinn – sofern der Ball nicht von außerhalb zurückgespielt wird.</li>
+        <li>Spiel außerhalb des Platzes (durch die Türen) nur, wenn die Anlage geeignete Öffnungen und Sicherheitsflächen hat <strong>und</strong> die Turnier- bzw. Hausregeln es zulassen.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Punktverlust</h3><span class="ref">Art. 14</span></div>
+      <ul class="rules warn">
+        <li>Der Ball springt ein <strong>zweites Mal</strong> auf der eigenen Seite auf.</li>
+        <li>Der Ball wird direkt gegen die eigene oder die gegnerische Wand bzw. das Gitter gespielt, ohne im Gegnerfeld aufzuspringen.</li>
+        <li>Der Ball berührt nach dem eigenen Schlag noch <strong>eigene</strong> Wände, bevor er das Netz überquert.</li>
+        <li>Der Ball trifft den Spieler selbst, seinen Partner oder deren Kleidung; wird er mit etwas anderem als dem Schläger gespielt oder <strong>zweimal</strong> berührt (auch von beiden Partnern).</li>
+        <li>Ein Spieler berührt Netz, Netzpfosten oder Netzband, während der Ball im Spiel ist – oder betritt die gegnerische Hälfte.</li>
+        <li>Der Ball trifft einen Gegner: Punkt für das schlagende Paar.</li>
+        <li>Der Ball bleibt im Gitter stecken oder verlässt den Platz durch ein Loch im Gitter: Punkt für das schlagende Paar.</li>
+        <li>Der Ball berührt Beleuchtung oder Dachkonstruktion – gilt grundsätzlich als aus; in Hallen weichen Hausregeln davon häufig ab (Wiederholung), das sollte vor dem Spiel geklärt werden.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 3 PUNKTEZÄHLUNG ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="num">03</span>
+      <h2>Punktezählung</h2>
+      <span class="sub">FIP Art. 1–2</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Im Spiel</h3></div>
+      <div class="table-hold">
+        <table class="score">
+          <thead>
+            <tr><th>Punkte</th><th>Ansage</th><th>&nbsp;</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td class="call">0 („null“)</td><td class="note">Aufschlagpaar wird immer zuerst genannt</td></tr>
+            <tr><td>1</td><td class="call">15</td><td class="note"></td></tr>
+            <tr><td>2</td><td class="call">30</td><td class="note"></td></tr>
+            <tr><td>3</td><td class="call">40</td><td class="note"></td></tr>
+            <tr><td>3 : 3</td><td class="call">Einstand</td><td class="note">Zwei Punkte in Folge entscheiden – oder ein Entscheidungspunkt, je nach Zählvariante</td></tr>
+            <tr><td>4</td><td class="call">Spiel</td><td class="note">mit mindestens zwei Punkten Vorsprung</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Drei offizielle Zählvarianten bei Einstand</h3><span class="ref">Art. 1</span></div>
+      <div class="variants">
+        <div><span class="name">Vorteilszählung</span><span class="desc">Nach Einstand braucht ein Paar zwei Punkte in Folge: Vorteil, dann Spiel.</span></div>
+        <div><span class="name">Golden Point</span><span class="desc">Bei 40:40 entscheidet ein einziger Punkt über das Spiel. Das <strong>Rückschlagpaar wählt</strong>, auf welcher Seite es annimmt. Standard auf der Profitour und in vielen deutschen Ligen und Turnieren (dort meist „No-Ad-Regel“ genannt).</span></div>
+        <div><span class="name">Star Point</span><span class="desc">Variante mit drei Entscheidungspunkten pro Spiel; kommt im deutschen Spielbetrieb selten vor.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Satz und Match</h3></div>
+      <ul class="rules">
+        <li><strong>Satz:</strong> sechs gewonnene Spiele mit mindestens zwei Spielen Vorsprung.</li>
+        <li><strong>6:6 → Tiebreak</strong> bis 7 Punkte mit zwei Punkten Vorsprung. Der erste Aufschläger hat einen Aufschlag, danach schlagen die Paare abwechselnd je zweimal auf; Seitenwechsel nach jeweils sechs Punkten.</li>
+        <li><strong>Match:</strong> zwei Gewinnsätze („best of three“).</li>
+        <li><strong>Match-Tiebreak:</strong> Im deutschen Liga- und Turnierbetrieb wird der dritte Satz sehr häufig als Match-Tiebreak bis 10 Punkte (zwei Punkte Vorsprung) gespielt. Das ist eine Festlegung der Ausschreibung, keine FIP-Grundregel.</li>
+      </ul>
+
+      <div class="callout">
+        <p><span class="k">Beispiel Ligaausschreibung</span>TVN Padel-Liga 2026: zwei Gewinnsätze bis 6 Spiele, bei 6:6 Tiebreak bis 7, dritter Satz als Match-Tiebreak bis 10 Punkte, No-Ad-Regel in allen Spielen. Andere Landesverbände und der DPV-Ligabetrieb regeln das jeweils in ihrer eigenen Ausschreibung – vor dem Spieltag nachlesen.</p>
+      </div>
+    </div>
+
+    <div class="check">
+      <h3>Vor dem Match klären</h3>
+      <ol>
+        <li>Zählweise bei Einstand: Vorteil oder Golden Point?</li>
+        <li>Dritter Satz komplett oder Match-Tiebreak bis 10?</li>
+        <li>Ist Spiel außerhalb des Platzes (durch die Türen) erlaubt?</li>
+        <li>Hausregel für Ball an Dach, Beleuchtung oder Heizstrahler: aus oder Wiederholung?</li>
+        <li>Ohne Schiedsrichter: Wer entscheidet knappe Bälle? Übliche Praxis ist, dass das Paar auf der eigenen Seite entscheidet – im Zweifel Wiederholung.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="sources">
+    <h3>Quellen</h3>
+    <ul>
+      <li><a href="https://www.padelfip.com/wp-content/uploads/2025/12/FIP_Rules-of-Padel.pdf">FIP – Rules of Padel (Fassung ab 01.01.2026, PDF)</a></li>
+      <li><a href="https://www.dpv-padel.de/regelfragen/">Deutscher Padel Verband – Regelfragen</a></li>
+      <li><a href="https://www.dpv-padel.de/wettbewerbe/deutsche-padel-liga">Deutscher Padel Verband – Deutsche Padel Liga</a></li>
+      <li><a href="https://www.tennis.de/content/dam/tennis/lv/tvn/spielbetrieb/dokumente/Wettspielordnung%20TVN%20Padel-Liga%2026.pdf.coredownload.pdf">Wettspielordnung TVN Padel-Liga 2026 (PDF)</a></li>
+      <li><a href="https://padelcompass.de/blog/padel-regeln-spielablauf">padelcompass.de – Padel-Regeln und Spielablauf</a></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
