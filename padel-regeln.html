@@ -31,7 +31,7 @@
     --f-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
     --f-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
 
-    --wrap: 47rem;
+    --wrap: none;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -81,7 +81,7 @@
     font-size: 1.0625rem;
     line-height: 1.62;
     -webkit-font-smoothing: antialiased;
-    padding: 0 20px;
+    padding: 0 clamp(16px, 3.5vw, 56px);
   }
 
   .wrap {
@@ -156,8 +156,9 @@
     font-weight: 500;
     color: var(--muted);
     letter-spacing: 0.02em;
-    white-space: nowrap;
   }
+  .ref a, .sub a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; }
+  .ref a:hover, .sub a:hover { color: var(--accent-2); }
 
   a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
   a:focus-visible, summary:focus-visible {
@@ -174,8 +175,9 @@
 
   .chapter-head {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 16px;
+    gap: 4px 16px;
     border-top: 2px solid var(--ink);
     padding-top: 12px;
     margin-bottom: 26px;
@@ -195,10 +197,9 @@
     font-family: var(--f-mono);
     font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--muted);
     margin-left: auto;
-    flex: none;
     padding-top: 6px;
   }
 
@@ -207,8 +208,9 @@
 
   .block-title {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 12px;
+    gap: 2px 12px;
     margin-bottom: 10px;
   }
   .block-title h3 { margin: 0; }
@@ -255,7 +257,7 @@
   }
 
   figure.court .svg-hold { overflow-x: auto; }
-  figure.court svg { display: block; width: 100%; min-width: 340px; height: auto; }
+  figure.court svg { display: block; width: 100%; max-width: 64rem; margin-inline: auto; min-width: 340px; height: auto; }
 
   figcaption {
     font-family: var(--f-mono);
@@ -364,7 +366,7 @@
 
   .walls {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 21rem));
     gap: 14px;
     margin: 4px 0 0;
   }
@@ -394,6 +396,45 @@
   .w-path  { stroke: var(--accent); stroke-width: 3; fill: none; }
   .w-path-no { stroke: var(--warn); stroke-width: 3; fill: none; }
   .w-lbl   { font-family: var(--f-mono); font-size: 13px; fill: var(--muted); }
+
+
+  /* ---------- EN/DE rule pairs ---------- */
+
+  .rules-en-de { display: flex; flex-direction: column; gap: 34px; margin-top: 8px; }
+  .rule { scroll-margin-top: 18px; }
+  .rule:target .rule-head h3 { color: var(--accent); }
+  .rule-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 14px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+  }
+  .rule-head h3 { margin: 0; font-size: 1.1rem; }
+  .rn { font-family: var(--f-mono); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); margin-right: 6px; }
+  .pair { padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+  .pair:last-child { border-bottom: none; }
+  .pair p { position: relative; display: block; padding-left: 3rem; font-size: 0.99rem; line-height: 1.55; margin: 0; }
+  .pair p[lang="en"] { color: var(--muted); margin-bottom: 7px; }
+  .lg {
+    font-family: var(--f-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    position: absolute;
+    left: 0;
+    top: 0.14rem;
+    width: 2.1rem;
+    height: 1.35rem;
+    display: grid;
+    place-items: center;
+    background: var(--surface);
+  }
+  .pair p[lang="de"] .lg { color: var(--accent); border-color: var(--accent); }
 
   /* ---------- score table ---------- */
 
@@ -507,7 +548,8 @@
     <p class="lede">Aufschlag, Ballwechsel und Punktezählung – kompakt zusammengefasst, mit den Positionsregeln für alle vier Spieler beim Aufschlag.</p>
     <p class="meta">
       Grundlage: <strong>Rules of Padel</strong> der Fédération Internationale de Padel (FIP), Fassung gültig ab 01.01.2026.<br>
-      In Deutschland gilt dieses Regelwerk über den Deutschen Padel Verband (DPV) als FIP-Mitgliedsverband; Zählweise und Sonderregeln legen Turnier- bzw. Ligaausschreibungen fest.
+      Der DPV ist Mitglied der FIP, erkennt deren Regeln an (Satzung § 2 Abs. 8) und orientiert sich auf seiner Website am FIP-Regelwerk; Zählweise und Sonderregeln legen Turnier- bzw. Ligaausschreibungen fest.<br>
+      Eine offizielle deutsche Fassung gibt es nicht – der DPV verweist auf das englische Original. Verbreitet ist eine inoffizielle „freie Übersetzung“ einer älteren Regelwerk-Fassung. Bei den Abschnitten springt <strong>FIP</strong> zur zweisprachigen Zusammenfassung der Rule (Kapitel 04, erst englisch, dann deutsch), <strong>DE</strong> öffnet die Übersetzung als PDF; deren Nummerierung (§ statt Rule) weicht ab, Details der Fassung 2026 können dort fehlen.
     </p>
   </header>
 
@@ -516,11 +558,11 @@
     <div class="chapter-head">
       <span class="num">01</span>
       <h2>Aufschlag</h2>
-      <span class="sub">FIP Art. 4–9</span>
+      <span class="sub"><a href="#rule-3" title="FIP Rules of Padel (EN, PDF) – Rules 3–9: Position of the players bis Repeat or „let“ and „net“ serve – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 3–9</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – §§ 5–11: Position der Spieler bis Netzaufschlag und Wiederholung">DE §§ 5–11</a></span>
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Ablauf</h3></div>
+      <div class="block-title"><h3>Ablauf</h3><span class="ref"><a href="#rule-6" title="FIP Rules of Padel (EN, PDF) – Rules 6–9: The service, Serve fault, Return of serve, Let/Net serve – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 6–9</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – §§ 8–11: Aufschlag, Aufschlagfehler, Rückschlag, Netzaufschlag">DE §§ 8–11</a></span></div>
       <ul class="rules">
         <li>Aufgeschlagen wird von <strong>unten</strong>: Der Aufschläger lässt den Ball hinter der Aufschlaglinie <strong>einmal auf den Boden auftippen</strong> und schlägt ihn nach dem Aufsprung. Kein Hochwurf, kein Schlag direkt aus der Luft.</li>
         <li>Der Treffpunkt liegt <strong>auf oder unter Hüfthöhe</strong>, und mindestens ein Fuß muss beim Schlag Bodenkontakt haben.</li>
@@ -565,7 +607,7 @@
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Positionen der vier Spieler</h3><span class="ref">Art. 3, 6, 8</span></div>
+      <div class="block-title"><h3>Positionen der vier Spieler</h3><span class="ref"><a href="#rule-3" title="FIP Rules of Padel (EN, PDF) – Rule 3: Position of the players; Rules 6–8 – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 3, 6–8</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 5: Position der Spieler; §§ 8–10">DE §§ 5, 8–10</a></span></div>
       <p>Nur der Aufschläger hat eine vorgeschriebene Position. Die anderen drei Spieler dürfen <strong>überall auf ihrer eigenen Spielfeldhälfte</strong> stehen – die üblichen Positionen sind taktisch, nicht vorgeschrieben.</p>
 
       <figure class="court">
@@ -674,7 +716,7 @@
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Reihenfolge und Seitenwechsel</h3><span class="ref">Art. 4, 8, 10</span></div>
+      <div class="block-title"><h3>Reihenfolge und Seitenwechsel</h3><span class="ref"><a href="#rule-4" title="FIP Rules of Padel (EN, PDF) – Rule 4: Choice of sides and service; Rule 5: Changes of sides; Rules 6, 8 – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 4–6, 8</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 6: Wahl der Seiten; § 7: Wechsel der Spielfeldseiten; §§ 8, 10">DE §§ 6–8, 10</a></span></div>
       <ul class="rules">
         <li>Aufschlag, Rückschlag und Seitenwahl werden zu Beginn <strong>ausgelost</strong>; das Gewinnerpaar wählt Aufschlag/Rückschlag oder Seite.</li>
         <li>Das <strong>Aufschlagrecht wechselt nach jedem Spiel</strong> zum anderen Paar. Innerhalb eines Paares schlagen die beiden Spieler abwechselnd auf, jeder also in jedem zweiten eigenen Aufschlagspiel. Zu Beginn eines neuen Satzes darf die Reihenfolge im Paar neu festgelegt werden.</li>
@@ -692,11 +734,11 @@
     <div class="chapter-head">
       <span class="num">02</span>
       <h2>Ballwechsel</h2>
-      <span class="sub">FIP Art. 11–16</span>
+      <span class="sub"><a href="#rule-12" title="FIP Rules of Padel (EN, PDF) – Rules 12–16: Ball in play bis Authorized out-of-court play – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 12–16</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – §§ 14–18: Ball im Spiel bis Spiel außerhalb des Courts">DE §§ 14–18</a></span>
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Die Grundregel: zuerst der Boden</h3></div>
+      <div class="block-title"><h3>Die Grundregel: zuerst der Boden</h3><span class="ref"><a href="#rule-12" title="FIP Rules of Padel (EN, PDF) – Rule 12: Ball in play; Rule 14: Correct return – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 12, 14</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 14: Ball im Spiel; § 16: Korrekter Rückschlag">DE §§ 14, 16</a></span></div>
       <p>Der Ball muss über das Netz in die gegnerische Hälfte fliegen und dort <strong>zuerst den Boden</strong> berühren. Alles danach – Glas, Gitter, mehrfache Wandkontakte – ist erlaubt, solange der Ball vor dem <strong>zweiten Bodenkontakt</strong> zurückgespielt wird. Auf der eigenen Seite gilt das Umgekehrte: Eigene Wände sind Spielmittel und dürfen zum Annehmen genutzt werden.</p>
 
       <div class="walls">
@@ -729,7 +771,7 @@
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Erlaubt</h3></div>
+      <div class="block-title"><h3>Erlaubt</h3><span class="ref"><a href="#rule-14" title="FIP Rules of Padel (EN, PDF) – Rule 14: Correct return; Rule 16: Authorized out-of-court play – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 14, 16</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 16: Korrekter Rückschlag; § 18: Spiel außerhalb des Courts">DE §§ 16, 18</a></span></div>
       <ul class="rules">
         <li>Volleys – mit Ausnahme des Rückschlags auf den Aufschlag.</li>
         <li>Den Ball nach dem Bodenkontakt von der <strong>eigenen</strong> Glas- oder Gitterwand zurückspringen lassen und dann spielen; auch mehrere eigene Wandkontakte sind erlaubt.</li>
@@ -740,15 +782,16 @@
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Punktverlust</h3><span class="ref">Art. 14</span></div>
+      <div class="block-title"><h3>Punktverlust</h3><span class="ref"><a href="#rule-13" title="FIP Rules of Padel (EN, PDF) – Rule 13: Point lost; Rule 15: Point won – im Kapitel „Regelwerk“ (EN/DE)">FIP Rules 13, 15</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 15: Punktverlust; § 17: Punktgewinn">DE §§ 15, 17</a></span></div>
       <ul class="rules warn">
         <li>Der Ball springt ein <strong>zweites Mal</strong> auf der eigenen Seite auf.</li>
-        <li>Der Ball wird direkt gegen die eigene oder die gegnerische Wand bzw. das Gitter gespielt, ohne im Gegnerfeld aufzuspringen.</li>
-        <li>Der Ball berührt nach dem eigenen Schlag noch <strong>eigene</strong> Wände, bevor er das Netz überquert.</li>
+        <li>Der Ball erreicht Wand oder Gitter des Gegners, ohne vorher im Gegnerfeld aufgesprungen zu sein (Rule 13 g).</li>
+        <li>Der Ball berührt nach dem eigenen Schlag das <strong>Metallgitter</strong> oder den Boden der <strong>eigenen</strong> Seite (Rule 13 l).</li>
         <li>Der Ball trifft den Spieler selbst, seinen Partner oder deren Kleidung; wird er mit etwas anderem als dem Schläger gespielt oder <strong>zweimal</strong> berührt (auch von beiden Partnern).</li>
         <li>Ein Spieler berührt Netz, Netzpfosten oder Netzband, während der Ball im Spiel ist – oder betritt die gegnerische Hälfte.</li>
         <li>Der Ball trifft einen Gegner: Punkt für das schlagende Paar.</li>
-        <li>Der Ball bleibt im Gitter stecken oder verlässt den Platz durch ein Loch im Gitter: Punkt für das schlagende Paar.</li>
+        <li>Der Ball bleibt nach dem Aufsprung im Gegnerfeld im Gitter oder auf der Oberkante der Wand stecken oder verlässt den Platz durch ein Loch im Gitter: Punkt für das schlagende Paar.</li>
+        <li>Ein Spieler reißt seine Schlägerschlaufe ab oder lässt den Schläger fallen: Das Paar verliert sofort den Punkt.</li>
         <li>Der Ball berührt Beleuchtung oder Dachkonstruktion – gilt grundsätzlich als aus; in Hallen weichen Hausregeln davon häufig ab (Wiederholung), das sollte vor dem Spiel geklärt werden.</li>
       </ul>
     </div>
@@ -759,11 +802,11 @@
     <div class="chapter-head">
       <span class="num">03</span>
       <h2>Punktezählung</h2>
-      <span class="sub">FIP Art. 1–2</span>
+      <span class="sub"><a href="#rule-1" title="FIP Rules of Padel (EN, PDF) – Rule 1: Score in a game – im Kapitel „Regelwerk“ (EN/DE)">FIP Rule 1</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 4: Zählweise">DE § 4</a></span>
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Im Spiel</h3></div>
+      <div class="block-title"><h3>Im Spiel</h3><span class="ref"><a href="#rule-1" title="FIP Rules of Padel (EN, PDF) – Rule 1: Score in a game – im Kapitel „Regelwerk“ (EN/DE)">FIP Rule 1</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 4.1: Zählweise in einem Wettspiel">DE § 4.1</a></span></div>
       <div class="table-hold">
         <table class="score">
           <thead>
@@ -782,16 +825,16 @@
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Drei offizielle Zählvarianten bei Einstand</h3><span class="ref">Art. 1</span></div>
+      <div class="block-title"><h3>Drei offizielle Zählvarianten bei Einstand</h3><span class="ref"><a href="#rule-1" title="FIP Rules of Padel (EN, PDF) – Rule 1: Alternative score methods – Advantage, Star Point, Golden Point – im Kapitel „Regelwerk“ (EN/DE)">FIP Rule 1 (Options 1–3)</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 4.2: Zählweise in einem Satz, Alternative Zählweisen">DE § 4.2</a></span></div>
       <div class="variants">
         <div><span class="name">Vorteilszählung</span><span class="desc">Nach Einstand braucht ein Paar zwei Punkte in Folge: Vorteil, dann Spiel.</span></div>
-        <div><span class="name">Golden Point</span><span class="desc">Bei 40:40 entscheidet ein einziger Punkt über das Spiel. Das <strong>Rückschlagpaar wählt</strong>, auf welcher Seite es annimmt. Standard auf der Profitour und in vielen deutschen Ligen und Turnieren (dort meist „No-Ad-Regel“ genannt).</span></div>
-        <div><span class="name">Star Point</span><span class="desc">Variante mit drei Entscheidungspunkten pro Spiel; kommt im deutschen Spielbetrieb selten vor.</span></div>
+        <div><span class="name">Golden Point</span><span class="desc">Bei 40:40 entscheidet ein einziger Punkt über das Spiel. Das <strong>Rückschlagpaar wählt</strong>, auf welcher Seite es annimmt. In vielen deutschen Ligen und Turnieren üblich (dort meist „No-Ad-Regel“ genannt).</span></div>
+        <div><span class="name">Star Point</span><span class="desc">Bei Einstand werden bis zu <strong>zwei Vorteile</strong> wie gewohnt ausgespielt. Fällt der Stand nach dem zweiten Vorteil erneut auf Einstand zurück, entscheidet ein einziger Punkt, der Star Point – auch hier wählt das Rückschlagpaar die Seite. Seit 2026 auf den FIP-Profitouren im Einsatz; ob eine deutsche Liga oder ein Turnier ihn übernimmt, steht in der jeweiligen Ausschreibung.</span></div>
       </div>
     </div>
 
     <div class="block">
-      <div class="block-title"><h3>Satz und Match</h3></div>
+      <div class="block-title"><h3>Satz und Match</h3><span class="ref"><a href="#rule-1" title="FIP Rules of Padel (EN, PDF) – Rule 1: Score in a game, Tie-break – im Kapitel „Regelwerk“ (EN/DE)">FIP Rule 1</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener" title="Freie Übersetzung (DE, PDF) – § 4.2: Zählweise in einem Satz, Tie-Break">DE § 4.2</a></span></div>
       <ul class="rules">
         <li><strong>Satz:</strong> sechs gewonnene Spiele mit mindestens zwei Spielen Vorsprung.</li>
         <li><strong>6:6 → Tiebreak</strong> bis 7 Punkte mit zwei Punkten Vorsprung. Der erste Aufschläger hat einen Aufschlag, danach schlagen die Paare abwechselnd je zweimal auf; Seitenwechsel nach jeweils sechs Punkten.</li>
@@ -807,7 +850,7 @@
     <div class="check">
       <h3>Vor dem Match klären</h3>
       <ol>
-        <li>Zählweise bei Einstand: Vorteil oder Golden Point?</li>
+        <li>Zählweise bei Einstand: Vorteil, Golden Point oder Star Point?</li>
         <li>Dritter Satz komplett oder Match-Tiebreak bis 10?</li>
         <li>Ist Spiel außerhalb des Platzes (durch die Türen) erlaubt?</li>
         <li>Hausregel für Ball an Dach, Beleuchtung oder Heizstrahler: aus oder Wiederholung?</li>
@@ -816,11 +859,136 @@
     </div>
   </section>
 
+
+  <!-- ============ 4 REGELWERK EN/DE ============ -->
+  <section class="chapter" id="regelwerk">
+    <div class="chapter-head">
+      <span class="num">04</span>
+      <h2>Regelwerk Rule für Rule</h2>
+      <span class="sub"><a href="https://www.padelfip.com/wp-content/uploads/2025/12/FIP_Rules-of-Padel.pdf" target="_blank" rel="noopener">FIP (EN, PDF)</a> · <a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf" target="_blank" rel="noopener">DE (PDF)</a></span>
+    </div>
+    <div class="callout caution">
+      <p><span class="k">Sinngemäß, nicht amtlich</span>Die Regeln sind hier in eigenen Worten zusammengefasst, zuerst englisch, dann deutsch – nicht als Wortlaut des FIP-Regelwerks (Fassung 2026). Verbindlich ist ausschließlich das Original im PDF. Nicht aufgenommen sind Rules 2, 10, 11 und 17 sowie die Abschnitte zu Platz, Ball, Schläger und Verhalten.</p>
+    </div>
+    <div class="rules-en-de">
+      <article class="rule" id="rule-1">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 1</span> Score in a game</h3>
+          <span class="ref">DE § 4 · Zählweise</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>A game is counted 15, 30, 40, game. When both pairs have three points the score is deuce. Three methods are defined: <strong>Advantage</strong> (win two points in a row), <strong>Star Point</strong> (up to two advantages are played; after the third deuce a single deciding point decides the game) and <strong>Golden Point</strong> (a single deciding point at the first deuce).</p><p lang="de"><span class="lg">DE</span>Ein Spiel wird mit 15, 30, 40, Spiel gezählt. Haben beide Paare drei Punkte, steht es Einstand. Drei Verfahren sind festgelegt: <strong>Vorteil</strong> (zwei Punkte in Folge), <strong>Star Point</strong> (bis zu zwei Vorteile werden ausgespielt; nach dem dritten Einstand entscheidet ein einziger Punkt das Spiel) und <strong>Golden Point</strong> (ein einziger Entscheidungspunkt beim ersten Einstand).</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>With Star Point and Golden Point the receiving pair chooses whether to receive on the right or the left side for the deciding point.</p><p lang="de"><span class="lg">DE</span>Bei Star Point und Golden Point wählt das Rückschlagpaar, ob es den Entscheidungspunkt auf der rechten oder linken Seite annimmt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>A set is won by the first pair with six games and a lead of two games. At 6–6 a tie-break is played to seven points with a two-point lead; the match is the best of three sets.</p><p lang="de"><span class="lg">DE</span>Einen Satz gewinnt das Paar, das zuerst sechs Spiele mit mindestens zwei Spielen Vorsprung erreicht. Bei 6:6 wird ein Tie-Break bis sieben Punkte mit zwei Punkten Vorsprung gespielt; das Match geht über zwei Gewinnsätze.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>In the tie-break the first server serves once, after that each player serves twice in turn; the pairs change ends after every six points.</p><p lang="de"><span class="lg">DE</span>Im Tie-Break schlägt der erste Aufschläger einmal auf, danach schlägt jeder Spieler abwechselnd zweimal auf; die Paare wechseln die Seiten nach jeweils sechs Punkten.</p></div>
+      </article>
+      <article class="rule" id="rule-3">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 3</span> Position of the players</h3>
+          <span class="ref">DE § 5 · Position der Spieler</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>Each pair stands on one side of the net. The server puts the ball in play, the player diagonally opposite receives it.</p><p lang="de"><span class="lg">DE</span>Jedes Paar steht auf einer Seite des Netzes. Der Aufschläger bringt den Ball ins Spiel, der diagonal gegenüberstehende Spieler nimmt ihn an.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>The receiver, the receiver's partner and the server's partner may stand anywhere on their own side of the court.</p><p lang="de"><span class="lg">DE</span>Der Rückschläger, sein Partner und der Partner des Aufschlägers dürfen an einer beliebigen Stelle ihrer eigenen Spielfeldhälfte stehen.</p></div>
+      </article>
+      <article class="rule" id="rule-4">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 4</span> Choice of sides and service</h3>
+          <span class="ref">DE § 6 · Wahl der Seiten und des Aufschlags</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>A coin toss decides sides and who serves first. The winner may choose to serve or to receive first, choose the side, or let the opponents choose first.</p><p lang="de"><span class="lg">DE</span>Ein Münzwurf entscheidet über Seiten und ersten Aufschlag. Der Gewinner darf Aufschlag oder Rückschlag wählen, die Spielfeldseite wählen oder den Gegnern die Wahl zuerst überlassen.</p></div>
+      </article>
+      <article class="rule" id="rule-5">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 5</span> Changes of sides</h3>
+          <span class="ref">DE § 7 · Wechsel der Spielfeldseiten</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>The pairs change sides after the 1st, 3rd and every following odd game of a set; in the tie-break after every six points.</p><p lang="de"><span class="lg">DE</span>Die Paare wechseln die Seiten nach dem 1., 3. und jedem weiteren ungeraden Spiel eines Satzes; im Tie-Break nach jeweils sechs Punkten.</p></div>
+      </article>
+      <article class="rule" id="rule-6">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 6</span> The serve</h3>
+          <span class="ref">DE § 8 · Aufschlag</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>Every point starts with a serve. The server must bounce the ball on the ground and hit it after the bounce.</p><p lang="de"><span class="lg">DE</span>Jeder Punkt beginnt mit einem Aufschlag. Der Aufschläger muss den Ball auf den Boden aufspringen lassen und ihn nach dem Aufsprung schlagen.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>The ball must be hit at or below waist height, with at least one foot in contact with the ground.</p><p lang="de"><span class="lg">DE</span>Der Ball muss auf oder unterhalb der Hüfthöhe getroffen werden, mindestens ein Fuß hat Bodenkontakt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>The server stands with one foot behind the service line, between the imaginary extension of the centre service line and the side wall, and may not touch the service line or the imaginary centre line.</p><p lang="de"><span class="lg">DE</span>Der Aufschläger steht mit einem Fuß hinter der Aufschlaglinie, zwischen der gedachten Verlängerung der Mittellinie und der Seitenwand, und darf weder die Aufschlaglinie noch die gedachte Mittellinie berühren.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>The right to serve alternates between the pairs every game. A player who serves out of turn is replaced by the rightful server as soon as the mistake is noticed.</p><p lang="de"><span class="lg">DE</span>Das Aufschlagrecht wechselt nach jedem Spiel zwischen den Paaren. Schlägt ein Spieler außer der Reihe auf, übernimmt der berechtigte Spieler, sobald der Fehler bemerkt wird.</p></div>
+      </article>
+      <article class="rule" id="rule-7">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 7</span> Serve fault</h3>
+          <span class="ref">DE § 9 · Aufschlagfehler</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>A serve is a fault if serve rules 1–6 are violated, the ball is missed, it lands outside the receiver's service box, it hits the server, the partner or anything they wear or carry, or it touches the metal fence after landing in the box and before a second bounce. Leaving the court through a gate after landing is a fault unless a safety zone allows it.</p><p lang="de"><span class="lg">DE</span>Ein Aufschlag ist ein Fehler, wenn die Aufschlagregeln 1–6 verletzt werden, der Ball verfehlt wird, er außerhalb des Aufschlagfelds des Rückschlägers landet, er den Aufschläger, den Partner oder von ihnen Getragenes trifft oder nach dem Aufsprung im Feld das Metallgitter berührt, bevor er ein zweites Mal aufspringt. Verlässt der Ball nach dem Aufsprung den Platz durch eine Tür, ist das ein Fehler, sofern kein Sicherheitsbereich dies erlaubt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>After a first fault the server has a second serve; two consecutive faults lose the point (see Rule 13 q).</p><p lang="de"><span class="lg">DE</span>Nach einem ersten Fehler hat der Aufschläger einen zweiten Aufschlag; zwei Fehler in Folge verlieren den Punkt (siehe Rule 13 q).</p></div>
+      </article>
+      <article class="rule" id="rule-8">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 8</span> Return of serve</h3>
+          <span class="ref">DE § 10 · Rückschlag</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>The receiver must let the served ball bounce in the service box before hitting it.</p><p lang="de"><span class="lg">DE</span>Der Rückschläger muss den Aufschlag im Aufschlagfeld aufspringen lassen, bevor er ihn spielt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>In the first game of each set the receiving pair decides who receives first. That player takes the first serve of every game until the end of the set; within a game the two partners receive alternately.</p><p lang="de"><span class="lg">DE</span>Im ersten Spiel eines Satzes bestimmt das Rückschlagpaar, wer zuerst annimmt. Dieser Spieler nimmt bis zum Ende des Satzes den ersten Aufschlag jedes Spiels an; innerhalb eines Spiels nehmen die Partner abwechselnd an.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>If the served ball hits a receiving player or racket before it has bounced, the point goes to the server.</p><p lang="de"><span class="lg">DE</span>Trifft der Aufschlag einen der Rückschläger oder dessen Schläger, bevor er aufgesprungen ist, geht der Punkt an den Aufschläger.</p></div>
+      </article>
+      <article class="rule" id="rule-9">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 9</span> Repeat or “let” and “net” serve</h3>
+          <span class="ref">DE § 11 · Netzaufschlag und Wiederholung</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>A serve that touches the net or the net posts and then lands in the receiver's service box is a “net” serve and is replayed.</p><p lang="de"><span class="lg">DE</span>Ein Aufschlag, der Netz oder Netzpfosten berührt und danach im Aufschlagfeld des Rückschlägers landet, ist ein Netzaufschlag („Let“) und wird wiederholt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>A “let” is called if the receiver is not ready when the server is. A let on a first serve replays the whole point, so the server again has two serves; a let on a second serve repeats only that serve.</p><p lang="de"><span class="lg">DE</span>Ein „Let“ wird gerufen, wenn der Rückschläger nicht bereit ist, der Aufschläger aber schon. Bei einem Let auf den ersten Aufschlag wird der ganze Punkt wiederholt, der Aufschläger hat also wieder zwei Aufschläge; bei einem Let auf den zweiten Aufschlag wird nur dieser wiederholt.</p></div>
+      </article>
+      <article class="rule" id="rule-12">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 12</span> Ball in play</h3>
+          <span class="ref">DE § 14 · Ball im Spiel</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>The ball is hit alternately by the two pairs. It is in play from a valid serve until a let is called or the point is decided.</p><p lang="de"><span class="lg">DE</span>Der Ball wird abwechselnd von den beiden Paaren gespielt. Er ist im Spiel von einem gültigen Aufschlag bis zu einem „Let“ oder bis der Punkt entschieden ist.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>After bouncing on the opponents' side the ball stays in play when it touches the walls, the metal fence, the ground, the net or the posts, and has to be returned before it bounces a second time.</p><p lang="de"><span class="lg">DE</span>Nach dem Aufsprung auf der gegnerischen Seite bleibt der Ball im Spiel, wenn er Wände, Metallgitter, Boden, Netz oder Pfosten berührt; er muss zurückgespielt werden, bevor er ein zweites Mal aufspringt.</p></div>
+      </article>
+      <article class="rule" id="rule-13">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 13</span> Point lost</h3>
+          <span class="ref">DE § 15 · Punktverlust</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>A pair loses the point if a player, a racket or anything worn or carried touches the net, the posts, the tension cable or the opponents' court while the ball is in play, or if a player jumps over the net.</p><p lang="de"><span class="lg">DE</span>Ein Paar verliert den Punkt, wenn ein Spieler, ein Schläger oder Getragenes bei laufendem Ball Netz, Pfosten, Spannseil oder das gegnerische Feld berührt oder wenn ein Spieler über das Netz springt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>…if the ball bounces a second time before it is returned, or if a player hits it before it has crossed the net.</p><p lang="de"><span class="lg">DE</span>…wenn der Ball vor dem Rückschlag ein zweites Mal aufspringt oder wenn ein Spieler ihn trifft, bevor er das Netz überquert hat.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>…if a player hits the ball twice, if both partners hit it, or if the ball is hit with a thrown racket.</p><p lang="de"><span class="lg">DE</span>…wenn ein Spieler den Ball zweimal trifft, wenn beide Partner ihn spielen oder wenn der Ball mit einem geworfenen Schläger gespielt wird.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>…if, after the player's own hit, the ball touches that player, the partner or anything worn, or touches the metal fence or the ground on the player's own side. A player who is hit by the opponents' ball anywhere but the racket also loses the point.</p><p lang="de"><span class="lg">DE</span>…wenn der Ball nach dem eigenen Schlag den Spieler selbst, den Partner oder Getragenes berührt oder das Metallgitter bzw. den Boden der eigenen Seite. Auch ein Spieler, der vom gegnerischen Ball an einer anderen Stelle als dem Schläger getroffen wird, verliert den Punkt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>…if a part of a player's body is outside the court without authorised out-of-court play, if a player serves two consecutive faults, or if a safety cord breaks or a racket is dropped.</p><p lang="de"><span class="lg">DE</span>…wenn sich ein Körperteil außerhalb des Spielfelds befindet, ohne dass Spiel außerhalb des Courts erlaubt ist, wenn ein Spieler zwei Aufschlagfehler in Folge macht oder wenn die Schlägerschlaufe reißt bzw. der Schläger fällt.</p></div>
+      </article>
+      <article class="rule" id="rule-14">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 14</span> Correct return</h3>
+          <span class="ref">DE § 16 · Korrekter Rückschlag</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>A return is correct, for example, if the ball bounces in the opponents' court and then touches the metal fence or a wall, or if it bounces in the opponents' court and then leaves the court because of the direction and force of the shot.</p><p lang="de"><span class="lg">DE</span>Ein Rückschlag ist zum Beispiel korrekt, wenn der Ball im gegnerischen Feld aufspringt und danach das Metallgitter oder eine Wand berührt oder wenn er dort aufspringt und durch Richtung und Wucht des Schlags anschließend den Platz verlässt.</p></div>
+<div class="pair"><p lang="en"><span class="lg">EN</span>A ball that touches the net or the posts and then lands in the opponents' court is also a correct return, as is a ball that hits any part of an opponent's body, clothing or racket.</p><p lang="de"><span class="lg">DE</span>Korrekt ist auch ein Ball, der Netz oder Pfosten berührt und danach im gegnerischen Feld landet, sowie ein Ball, der einen Gegner an Körper, Kleidung oder Schläger trifft.</p></div>
+      </article>
+      <article class="rule" id="rule-15">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 15</span> Point won</h3>
+          <span class="ref">DE § 17 · Punktgewinn</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>The point is won if, after bouncing in the opponents' court, the ball leaves the court through a hole in the metal fence or gets stuck in that hole, or gets stuck on the flat top surface of a wall.</p><p lang="de"><span class="lg">DE</span>Den Punkt gewinnt das schlagende Paar, wenn der Ball nach dem Aufsprung im gegnerischen Feld durch ein Loch im Metallgitter den Platz verlässt oder in diesem Loch bzw. auf der flachen Oberkante einer Wand stecken bleibt.</p></div>
+      </article>
+      <article class="rule" id="rule-16">
+        <header class="rule-head">
+          <h3><span class="rn">Rule 16</span> Authorised out-of-court play</h3>
+          <span class="ref">DE § 18 · Spiel außerhalb des Courts</span>
+        </header>
+        <div class="pair"><p lang="en"><span class="lg">EN</span>Players may leave the court to play the ball only if the court meets the conditions set out in the section on the safety area and out-of-court play.</p><p lang="de"><span class="lg">DE</span>Spieler dürfen den Platz zum Spielen des Balls nur verlassen, wenn der Court die Bedingungen des Abschnitts zu Sicherheitsbereich und Spiel außerhalb des Courts erfüllt.</p></div>
+      </article>
+    </div>
+  </section>
+
   <div class="sources">
     <h3>Quellen</h3>
     <ul>
       <li><a href="https://www.padelfip.com/wp-content/uploads/2025/12/FIP_Rules-of-Padel.pdf">FIP – Rules of Padel (Fassung ab 01.01.2026, PDF)</a></li>
+      <li><a href="https://www.dpv-padel.de/padel/strukturelles/regeln">Deutscher Padel Verband – Regeln (verweist auf das FIP-Regelwerk)</a></li>
       <li><a href="https://www.dpv-padel.de/regelfragen/">Deutscher Padel Verband – Regelfragen</a></li>
+      <li><a href="https://www.mypadel.de/content/dam/mypadel/play/dokumente/2025_Padel%20Regeln.pdf.coredownload.pdf">Padel Regeln – inoffizielle freie Übersetzung des IPF-Regelwerks (mypadel.de, PDF)</a></li>
       <li><a href="https://www.dpv-padel.de/wettbewerbe/deutsche-padel-liga">Deutscher Padel Verband – Deutsche Padel Liga</a></li>
       <li><a href="https://www.tennis.de/content/dam/tennis/lv/tvn/spielbetrieb/dokumente/Wettspielordnung%20TVN%20Padel-Liga%2026.pdf.coredownload.pdf">Wettspielordnung TVN Padel-Liga 2026 (PDF)</a></li>
       <li><a href="https://padelcompass.de/blog/padel-regeln-spielablauf">padelcompass.de – Padel-Regeln und Spielablauf</a></li>
